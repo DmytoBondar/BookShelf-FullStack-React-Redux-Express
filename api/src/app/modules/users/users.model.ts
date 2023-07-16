@@ -1,24 +1,41 @@
 import { Schema, model } from 'mongoose';
 import { IUser, IUserModel } from './users.interface';
-import bcrypt from 'bcrypt';
-import config from '../../../config';
 
 const UserSchema = new Schema<IUser, IUserModel>(
     {
-        role: {
+        name: {
+            firstName: {
+                type: String,
+                required: true
+            },
+            lastName: {
+                type: String,
+                required: true
+            },
+            middleName: {
+                type: String
+            }
+        },
+        gender: {
             type: String,
-            enum: ['admin', 'user'],
+            enum: ['male', 'female', 'shemale'],
+        },
+        address: {
+            type: String,
         },
         contactNo: {
-            type: Number
+            type: Number,
         },
-        user: {
-            type: Schema.Types.ObjectId, 
-            ref: 'Users'
-        },
-        password: {
+        email: {
             type: String,
-            required: true
+            required: true,
+            unique: true,
+        },
+        profileImage: {
+            type: String
+        },
+        designation: {
+            type: String
         }
     },
     {
@@ -28,13 +45,4 @@ const UserSchema = new Schema<IUser, IUserModel>(
         },
     }
 );
-
-// UserSchema.statics.isUserExist = async function ()
-UserSchema.pre('save', async function(next){
-    const user = this;
-    user.password = await bcrypt.hash(user.password, Number(config.bycrypt_salt_rounds))
-    next();
-})
-
-
-export const UserModel = model<IUser, IUserModel>('Auth', UserSchema);
+export const UserModel = model<IUser, IUserModel>('Users', UserSchema);

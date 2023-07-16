@@ -1,17 +1,10 @@
-import { Model } from "mongoose";
+import { Model, Types } from "mongoose";
+import { IUser } from "../users/users.interface";
 
 export interface IAuth{
-    name: {
-        firstName: string;
-        lastName: string;
-        middleName?: string;
-    },
-    dateOfBirth: string;
-    gender?:"male" | "female" | "shemale" ;
-    address?:string;
-    contactNo: number;
-    profileImage?:string;
-    email: string;
-    designation?: string; 
+    role: "admin" | "user";
+    password: string;
+    contactNo?: number;
+    user?: Types.ObjectId | IUser
 }
 export type IAuthModel = Model<IAuth, {}>

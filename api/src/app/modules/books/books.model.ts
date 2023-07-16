@@ -6,6 +6,7 @@ const BooksSchema = new Schema<IBooks, IBooksModel>(
     title: {
       type: String,
       required: true,
+      unique: true
     },
     author: {
       type: String,

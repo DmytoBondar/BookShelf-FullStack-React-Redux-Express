@@ -3,12 +3,13 @@ import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import { UserService } from './users.service';
 import { IUser } from './users.interface';
+import { IAuth } from '../auth/auth.interface';
 
 const createUser = catchAsync(async (req: Request, res: Response) => {
-    const { user,...userData } = req.body;
-    const result = await UserService.createUser(user,userData);
+    const { user,...authData } = req.body;
+    const result = await UserService.createUser(user,authData);
 
-    sendResponse<IUser>(res, {
+    sendResponse<IAuth>(res, {
         statusCode: 200,
         success: true,
         message: 'User created successfully!',

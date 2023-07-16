@@ -1,40 +1,24 @@
 import { Schema, model } from 'mongoose';
+import bcrypt from 'bcrypt';
+import config from '../../../config';
 import { IAuth, IAuthModel } from './auth.interface';
 
 const AuthSchema = new Schema<IAuth, IAuthModel>(
     {
-        name: {
-            firstName: {
-                type: String,
-                required: true
-            },
-            lastName: {
-                type: String,
-                required: true
-            },
-            middleName: {
-                type: String
-            }
-        },
-        gender: {
+        role: {
             type: String,
-            enum: ['male', 'female', 'shemale'],
-        },
-        address: {
-            type: String,
+            enum: ['admin', 'user'],
         },
         contactNo: {
-            type: Number,
+            type: Number
         },
-        email: {
+        user: {
+            type: Schema.Types.ObjectId, 
+            ref: 'Users'
+        },
+        password: {
             type: String,
             required: true
-        },
-        profileImage: {
-            type: String
-        },
-        designation: {
-            type: String
         }
     },
     {
@@ -44,4 +28,9 @@ const AuthSchema = new Schema<IAuth, IAuthModel>(
         },
     }
 );
-export const AuthModel = model<IAuth, IAuthModel>('Users', AuthSchema);
+AuthSchema.pre('save', async function(next){
+    const user = this;
+    user.password = await bcrypt.hash(user.password, Number(config.bycrypt_salt_rounds))
+    next();
+})
+export const AuthModel = model<IAuth, IAuthModel>('Auth', AuthSchema);

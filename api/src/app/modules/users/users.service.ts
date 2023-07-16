@@ -2,26 +2,26 @@ import mongoose from "mongoose";
 import { IUser } from "./users.interface";
 import { UserModel } from "./users.model";
 import { AuthModel } from "../auth/auth.model";
-import { IAuth } from "../auth/auth.interface";
 import ApiError from "../../../error/apiError";
+import { IAuth } from "../auth/auth.interface";
 
-const createUser = async (auth: IAuth, user: IUser): Promise<IUser | null> => {
+const createUser = async (user: IUser, auth: IAuth): Promise<IAuth | null> => {
     let newUserAllData = null;
+
     const session = await mongoose.startSession();
-  
     try {
       session.startTransaction();
   
-      const newUser = await AuthModel.create([auth], { session });
+      const newUser = await UserModel.create([user], { session });
   
       if (!newUser) {
         throw new ApiError(403, "Unable to create User !!");
       }
   
-      user.user = newUser[0]._id;
-      user.contactNo = newUser[0].contactNo;
+      auth.user = newUser[0]._id;
+      auth.contactNo = newUser[0].contactNo;
   
-      const authUser = await UserModel.create([user], { session });
+      const authUser = await AuthModel.create([auth], { session });
       if (!authUser) {
         throw new ApiError(403, "Unable to create Auth !!");
       }
@@ -37,7 +37,7 @@ const createUser = async (auth: IAuth, user: IUser): Promise<IUser | null> => {
     }
   
     if (newUserAllData) {
-      newUserAllData = await UserModel.findOne({ _id: newUserAllData._id }).populate('user')
+      newUserAllData = await AuthModel.findOne({ _id: newUserAllData._id }).populate('user')
     }
   
     return newUserAllData;
