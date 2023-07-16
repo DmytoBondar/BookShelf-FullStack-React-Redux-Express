@@ -3,6 +3,7 @@ import express, { Application, NextFunction, Request, Response } from 'express';
 
 
 import cookieParser from 'cookie-parser';
+import router from './app/routes';
 
 const app: Application = express();
 
@@ -12,6 +13,8 @@ app.use(cookieParser());
 //parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/api/v1', router)
 
 app.get('/', (req, res, next) => {
   res.send("Welcome to BOOKSHELF api !!")
