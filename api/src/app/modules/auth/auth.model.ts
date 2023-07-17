@@ -28,6 +28,15 @@ const AuthSchema = new Schema<IAuth, IAuthModel>(
         },
     }
 );
+
+AuthSchema.statics.isUserExist = async function(contactNumber:number): Promise<IAuth | null>{
+    return await AuthModel.findOne({contactNumber: contactNumber})
+}
+
+AuthSchema.statics.isPasswordMatched = async function(currentPass:string, givenPass:string): Promise<boolean>{
+    return await bcrypt.compare(currentPass, givenPass)
+}
+
 AuthSchema.pre('save', async function(next){
     const user = this;
     user.password = await bcrypt.hash(user.password, Number(config.bycrypt_salt_rounds))
