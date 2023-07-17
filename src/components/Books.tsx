@@ -1,4 +1,5 @@
 import { IBooks } from "@/types";
+import { Link } from "react-router-dom";
 
 interface IProps {
     book: IBooks
@@ -28,6 +29,7 @@ const Books = ({book}: IProps) => {
             </ul>
         </div>
     </div>
+    <Link to={`book/${book._id}`}>
     <div className="flex flex-col items-center pb-10">
         <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://images.unsplash.com/photo-1641716162046-e6fe7ce76818?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80" alt="Bonnie image"/>
         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{book.title}</h5>
@@ -37,6 +39,7 @@ const Books = ({book}: IProps) => {
             <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Add Wish</a>
         </div>
     </div>
+    </Link>
 </div>
 
   )

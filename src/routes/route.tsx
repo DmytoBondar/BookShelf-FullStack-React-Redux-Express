@@ -1,4 +1,5 @@
 import App from "@/App";
+import BookDetailPage from "@/pages/BookDetailPage";
 import Home from "@/pages/Home";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
         {
             index: true,
             element: <Home/>
+        },
+        {
+          path: 'book/:id',
+          element: <BookDetailPage/>
         }
       ]
     },
