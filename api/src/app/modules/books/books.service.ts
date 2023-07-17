@@ -1,4 +1,5 @@
-import { IBooks } from "./books.interface";
+import { booksFilterOptions, booksSearchableFields } from "../../../constants";
+import { IBooks, IBooksFilter } from "./books.interface";
 import { BooksModel } from "./books.model";
 
 const createBook = async (payload: IBooks): Promise<IBooks> => {
@@ -6,8 +7,32 @@ const createBook = async (payload: IBooks): Promise<IBooks> => {
   return result;
 };
 
-const getAllBooks = async (): Promise<IBooks[]> => {
-    const result = await BooksModel.find();
+const getAllBooks = async (filterOptions: IBooksFilter): Promise<IBooks[]> => {
+    const {searchTerm, ...othersFilterOptions} = filterOptions;
+
+    let andCondition = [];
+
+    if(searchTerm){
+      andCondition.push({
+        $or: booksSearchableFields.map((data) => ({
+          [data]: {
+            $regex: searchTerm,
+            $options: 'i'
+          }
+        }))
+      })
+    }
+
+    if(Object.keys(othersFilterOptions).length){
+      andCondition.push({
+        $and: Object.entries(filterOptions).map(([field, value]) => ({
+          [field]: value
+        }))
+      })
+    }
+
+    const whereCondition = andCondition.length > 0 ? {$and: andCondition}: {}
+    const result = await BooksModel.find(whereCondition);
     return result
 };
 

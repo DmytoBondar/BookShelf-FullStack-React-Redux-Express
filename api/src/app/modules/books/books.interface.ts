@@ -7,4 +7,11 @@ export interface IBooks {
     publicationDate:string;
     reviews?: string;
 }
+
+export interface IBooksFilter {
+    title?: string;
+    author?: string;
+    searchTerm?: string;
+    publicationDate?: string;
+}
 export type IBooksModel = Model<IBooks, {}>

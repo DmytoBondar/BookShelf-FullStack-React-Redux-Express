@@ -3,6 +3,8 @@ import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import { IBooks } from './books.interface';
 import { BookService } from './books.service';
+import pick from '../../../shared/pick';
+import { booksFilterOptions } from '../../../constants';
 
 const createBook = catchAsync(async (req: Request, res: Response) => {
     const { ...booksData } = req.body;
@@ -17,8 +19,8 @@ const createBook = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllBooks = catchAsync(async (req: Request, res: Response) => {
-    const result = await BookService.getAllBooks();
-
+    const filterOptions = pick(req.query, booksFilterOptions)
+    const result = await BookService.getAllBooks(filterOptions);
     sendResponse<IBooks[]>(res, {
         statusCode: 200,
         success: true,
