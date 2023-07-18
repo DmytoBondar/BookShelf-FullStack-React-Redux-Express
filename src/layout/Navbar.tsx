@@ -6,13 +6,9 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 
 import { Button } from "@/components/ui/button"
@@ -42,7 +38,7 @@ const Navbar = () => {
               <a href="#" className="text-gray-200 block pl-3 pr-4 py-2 hover:text-blue-700 md:p-0 rounded focus:outline-none" aria-current="page">Features</a>
             </li>
             <li>
-              <a href="#" className="text-gray-200 block pl-3 pr-4 py-2 hover:text-blue-700 md:p-0 rounded focus:outline-none" aria-current="page">Best Seller</a>
+              <Link to="/book/add-book" className="text-gray-200 block pl-3 pr-4 py-2 hover:text-blue-700 md:p-0 rounded focus:outline-none" aria-current="page">Add Book</Link>
             </li>
             <li>
               <a href="#" className="text-gray-200 block pl-3 pr-4 py-2 hover:text-blue-700 md:p-0 rounded focus:outline-none" aria-current="page">Contact Us</a>
