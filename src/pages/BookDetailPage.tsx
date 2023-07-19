@@ -12,6 +12,22 @@ const BookDetailPage = () => {
   if (!isLoading && !isError && data?.data) content = <div>Data is empty.</div>;
   if (!isLoading && !isError && data?.data) {
     content = (
+      // <div id="app" className="min-h-screen bg-grey-light">
+      //   <div className="pt-8">
+      //     <div className="mx-auto">
+      //       <img src="https://images.unsplash.com/photo-1492551557933-34265f7af79e"/>
+      //       <div>
+      //         <div>Work</div>
+      //         <div>
+      //           A photo from <a href="https://unsplash.com/photos/73OZYNjVoNI" >unsplash.com</a>
+      //         </div>
+      //         <div>
+      //           Here, I want to add some text describing the picture.
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
       <div>
         <div className="mx-10 my-7 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div className="p-5">

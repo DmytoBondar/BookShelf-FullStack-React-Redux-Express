@@ -114,7 +114,7 @@ const Footer = () => {
                 </div>
 
                 <div className="relative md:mb-6" data-te-input-wrapper-init>
-                  <input
+                  <input style={{ outlineColor: "#35A29F" }}
                     type="text"
                     className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] text-neutral-200 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                     id="exampleFormControlInput1"
@@ -141,7 +141,7 @@ const Footer = () => {
           </div>
 
 
-          <div className="mb-6">
+          <div className="mb-6 px-10 mx-auto">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
               distinctio earum repellat quaerat voluptatibus placeat nam,
@@ -153,84 +153,84 @@ const Footer = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4">
             <div className="mb-6">
-              <h5 className="mb-2.5 font-bold uppercase">Links</h5>
+              <h5 className="mb-2.5 font-bold uppercase">Contact Information:</h5>
 
               <ul className="mb-0 list-none">
                 <li>
-                  <a href="#!" className="text-white">Link 1</a>
+                  <a href="#!" className="text-white">Contact Information:</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Link 2</a>
+                  <a href="#!" className="text-white">Address: 123 Main Street, Anytown, USA</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Link 3</a>
+                  <a href="#!" className="text-white">Phone: +1 (555) 123-4567</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Link 4</a>
+                  <a href="#!" className="text-white">Email: info@example.com</a>
                 </li>
               </ul>
             </div>
 
             <div className="mb-6">
-              <h5 className="mb-2.5 font-bold uppercase">Links</h5>
+              <h5 className="mb-2.5 font-bold uppercase">About Us</h5>
 
               <ul className="mb-0 list-none">
                 <li>
-                  <a href="#!" className="text-white">Link 1</a>
+                  <a href="#!" className="text-white mx-10 max-w-xm">A brief description of your company or website's mission and values:
+                    "We are a tech-savvy team passionate about delivering innovative solutions to our customers. Our mission is to make technology accessible and beneficial for everyone.</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Link 2</a>
+                  <a href="#!" className="text-white">Copyright Notice</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Link 3</a>
+                  <a href="#!" className="text-white">Navigation Links</a>
                 </li>
-                <li>
-                  <a href="#!" className="text-white">Link 4</a>
-                </li>
+
               </ul>
             </div>
 
             <div className="mb-6">
-              <h5 className="mb-2.5 font-bold uppercase">Links</h5>
+              <h5 className="mb-2.5 font-bold uppercase">Privacy Policy</h5>
 
               <ul className="mb-0 list-none">
                 <li>
-                  <a href="#!" className="text-white">Link 1</a>
+                  <a href="#!" className="text-white">Terms of Service</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Link 2</a>
+                  <a href="#!" className="text-white">Copyright Notice</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Link 3</a>
+                  <a href="#!" className="text-white">Navigation Links</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Link 4</a>
+                  <a href="#!" className="text-white">Navigation Links</a>
                 </li>
+                <li>
+                  <a href="#!" className="text-white">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="#!" className="text-white">Copyright Notice</a>
+                </li>
+
               </ul>
             </div>
 
             <div className="mb-6">
-              <h5 className="mb-2.5 font-bold uppercase">Links</h5>
+              <h5 className="mb-2.5 font-bold uppercase">Disclaimer</h5>
 
               <ul className="mb-0 list-none">
                 <li>
-                  <a href="#!" className="text-white">Link 1</a>
+                  <a href="#!" className="text-white">The information provided on this website is for general informational purposes only. We are not responsible for any reliance on the information presented here.</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Link 2</a>
-                </li>
-                <li>
-                  <a href="#!" className="text-white">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!" className="text-white">Link 4</a>
+                  <a href="#!" className="text-white">Information about your website's commitment to accessibility and any measures taken to make it usable for all users:</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
         <div
-          className="p-4 text-center" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
+          className="p-4 text-center" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
           © 2023 Copyright:
           <a className="text-white" href="https://tailwind-elements.com/">UjjalZaman</a>
         </div>
