@@ -14,10 +14,9 @@ const Home = () => {
     content = data?.data?.map((book: IBooks) => <Books book={book} key={book._id}/>)
   }
   return (
-    <div className="p-2 flex justify-center flex-wrap">
+    <div className="columns-2 mb-10 mt-5 mx-2">
       {content}
     </div>
   );
 };
-
 export default Home;

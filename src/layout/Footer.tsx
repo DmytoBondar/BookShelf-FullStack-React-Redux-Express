@@ -1,13 +1,13 @@
 const Footer = () => {
   return (
     <>
-      <footer className="bg-neutral-900 text-center text-white">
+      <footer className="bg-neutral-900 text-center text-gray-300">
         <div className="container px-6 pt-6">
           <div className="mb-6 flex justify-center">
             <a
               href="#!"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-gray-300 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
               data-te-ripple-color="light">
               <svg
@@ -23,7 +23,7 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-gray-300 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
               data-te-ripple-color="light">
               <svg
@@ -39,7 +39,7 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-gray-300 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
               data-te-ripple-color="light">
               <svg
@@ -57,7 +57,7 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-gray-300 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
               data-te-ripple-color="light">
               <svg
@@ -73,7 +73,7 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-gray-300 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
               data-te-ripple-color="light">
               <svg
@@ -89,7 +89,7 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-gray-300 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               data-te-ripple-init
               data-te-ripple-color="light">
               <svg
@@ -157,16 +157,16 @@ const Footer = () => {
 
               <ul className="mb-0 list-none">
                 <li>
-                  <a href="#!" className="text-white">Contact Information:</a>
+                  <a href="#!" className="text-gray-300">Contact Information:</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Address: 123 Main Street, Anytown, USA</a>
+                  <a href="#!" className="text-gray-300">Address: 123 Main Street, Anytown, USA</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Phone: +1 (555) 123-4567</a>
+                  <a href="#!" className="text-gray-300">Phone: +1 (555) 123-4567</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Email: info@example.com</a>
+                  <a href="#!" className="text-gray-300">Email: info@example.com</a>
                 </li>
               </ul>
             </div>
@@ -176,16 +176,13 @@ const Footer = () => {
 
               <ul className="mb-0 list-none">
                 <li>
-                  <a href="#!" className="text-white mx-10 max-w-xm">A brief description of your company or website's mission and values:
+                  <a href="#!" className="text-gray-300 mx-10 max-w-xm">A brief description of your company or website's mission and values:
                     "We are a tech-savvy team passionate about delivering innovative solutions to our customers. Our mission is to make technology accessible and beneficial for everyone.</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Copyright Notice</a>
+                  <a href="#!" className="text-gray-300">Copyright Notice</a>
                 </li>
-                <li>
-                  <a href="#!" className="text-white">Navigation Links</a>
-                </li>
-
+                
               </ul>
             </div>
 
@@ -194,22 +191,22 @@ const Footer = () => {
 
               <ul className="mb-0 list-none">
                 <li>
-                  <a href="#!" className="text-white">Terms of Service</a>
+                  <a href="#!" className="text-gray-300">Terms of Service</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Copyright Notice</a>
+                  <a href="#!" className="text-gray-300">Copyright Notice</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Navigation Links</a>
+                  <a href="#!" className="text-gray-300">Navigation Links</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Navigation Links</a>
+                  <a href="#!" className="text-gray-300">Navigation Links</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Terms of Service</a>
+                  <a href="#!" className="text-gray-300">Terms of Service</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Copyright Notice</a>
+                  <a href="#!" className="text-gray-300">Copyright Notice</a>
                 </li>
 
               </ul>
@@ -220,10 +217,10 @@ const Footer = () => {
 
               <ul className="mb-0 list-none">
                 <li>
-                  <a href="#!" className="text-white">The information provided on this website is for general informational purposes only. We are not responsible for any reliance on the information presented here.</a>
+                  <a href="#!" className="text-gray-300">The information provided on this website is for general informational purposes only. We are not responsible for any reliance on the information presented here.</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-white">Information about your website's commitment to accessibility and any measures taken to make it usable for all users:</a>
+                  <a href="#!" className="text-gray-300">Information about your website's commitment to accessibility and any measures taken to make it usable for all users:</a>
                 </li>
               </ul>
             </div>
@@ -232,7 +229,7 @@ const Footer = () => {
         <div
           className="p-4 text-center" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
           © 2023 Copyright:
-          <a className="text-white" href="https://tailwind-elements.com/">UjjalZaman</a>
+          <a className="text-gray-300" href="https://tailwind-elements.com/">UjjalZaman</a>
         </div>
       </footer>
     </>
