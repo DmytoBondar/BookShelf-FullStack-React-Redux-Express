@@ -17,9 +17,9 @@ const Navbar = () => {
   return (
     <nav className="border-gray-200 bg-gray-900 text-gray-200">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
-        <a href="#" className="flex">
+        <Link to="/" className="flex">
           <img src={Logo} alt="<a href='https://pngtree.com/freepng/book-logo-design-inspiration_8925017.html'>png image from pngtree.com/</a>" width="60" height="90" />
-        </a>
+        </Link>
 
         <label className="relative block">
           <span className="sr-only">Search</span>

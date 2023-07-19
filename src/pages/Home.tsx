@@ -14,7 +14,7 @@ const Home = () => {
     content = data?.data?.map((book: IBooks) => <Books book={book} key={book._id}/>)
   }
   return (
-    <div className="p-2 flex justify-center">
+    <div className="p-2 flex justify-center flex-wrap">
       {content}
     </div>
   );
