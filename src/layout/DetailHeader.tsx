@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom"
 
-const DetailHeader = () => {
+const DetailHeader = ({data}: any) => {
     return (
         <div className="">
             <div className="h-80 w-full bg-purple-400 relative">
@@ -11,7 +12,7 @@ const DetailHeader = () => {
                         <div>
                             <h1 className="text-4xl text-white p-2">Lorem ipsum dolor sit amet.</h1>
                             <div className="p-2 text-white flex items-center mb-2">
-                                Author :  Ujjal zaman
+                                Author : {data.author}
                             </div>
                             <div className="p-2 text-white flex items-center mb-2">
                                 Genre :  Drama
@@ -20,6 +21,9 @@ const DetailHeader = () => {
                                 Publication Date : 2 February 2012
                             </div>
                         </div>
+                        <Link to={`/book/edit-book/${data._id}`}>
+                            <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit Book</button>
+                        </Link>
                     </div>
                 </div>
             </div>

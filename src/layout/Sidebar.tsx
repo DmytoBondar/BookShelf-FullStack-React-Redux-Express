@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const Sidebar = () => {
     return (
         <div className="bg-cyan-900 h-full">
@@ -57,6 +59,9 @@ const Sidebar = () => {
                 <div>
                     <h2 className="text-white hover:text-cyan-500 p-2">Reading List</h2>
                     <h2 className="text-white hover:text-cyan-500 p-2">Wish List</h2>
+                    <Link to='/book/add-book'>
+                        <h2 className="text-white hover:text-cyan-500 p-2">Add Book</h2>
+                    </Link>
                 </div>
             </div>
         </div>

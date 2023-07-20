@@ -14,7 +14,7 @@ const BookDetailPage = () => {
   if (!isLoading && !isError && data?.data) {
     content = (
       <>
-        <DetailHeader />
+        <DetailHeader data={data?.data}/>
         <Review />
       </>
     )
