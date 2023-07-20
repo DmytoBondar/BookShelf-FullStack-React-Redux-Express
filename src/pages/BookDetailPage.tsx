@@ -1,6 +1,7 @@
 import { useGetSingleBookQuery } from '@/redux/features/book/bookApi'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Review from './Review';
+import DetailHeader from '@/layout/DetailHeader';
 
 const BookDetailPage = () => {
   const { id } = useParams();
@@ -12,36 +13,10 @@ const BookDetailPage = () => {
   if (!isLoading && !isError && data?.data) content = <div>Data is empty.</div>;
   if (!isLoading && !isError && data?.data) {
     content = (
-      // <div id="app" className="min-h-screen bg-grey-light">
-      //   <div className="pt-8">
-      //     <div className="mx-auto">
-      //       <img src="https://images.unsplash.com/photo-1492551557933-34265f7af79e"/>
-      //       <div>
-      //         <div>Work</div>
-      //         <div>
-      //           A photo from <a href="https://unsplash.com/photos/73OZYNjVoNI" >unsplash.com</a>
-      //         </div>
-      //         <div>
-      //           Here, I want to add some text describing the picture.
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
-      <div>
-        <div className="mx-10 my-7 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-5">
-            <a href="#">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{data.data.title}</h5>
-            </a>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{data.data.author}</p>
-            <Link to={`/book/edit-book/${data.data._id}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Edit
-            </Link>
-          </div>
-        </div>
+      <>
+        <DetailHeader />
         <Review />
-      </div>
+      </>
     )
   }
   return (
