@@ -2,9 +2,10 @@ import { Model, Types } from "mongoose";
 import { IUser } from "../users/users.interface";
 
 export interface IAuth {
+    _id?: Types.ObjectId;
     role: "admin" | "user";
     password: string;
-    contactNo?: number;
+    contactNo?: string;
     user?: Types.ObjectId | IUser
 }
 
@@ -17,6 +18,6 @@ export interface IAuthResponse {
     refreshToken?: string;
 }
 export type IAuthModel = {
-    isUserExist(id: string): Promise<IAuth>;
+    isUserExist(contactNo: string): Promise<IAuth | null>;
     isPasswordMatched(currentPass: string, givenPass:string): Promise<boolean>;
 } & Model<IAuth>

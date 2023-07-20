@@ -7,9 +7,9 @@ export interface IUser{
         middleName?: string;
     },
     dateOfBirth: string;
-    gender?:"male" | "female" | "shemale" ;
+    gender?:"male" | "female";
     address?:string;
-    contactNo: number;
+    contactNo: string;
     profileImage?:string;
     email: string;
     designation?: string; 

@@ -37,7 +37,7 @@ const getAllBooks = async (filterOptions: IBooksFilter): Promise<IBooks[]> => {
 };
 
 const getSingleBook = async (id: string): Promise<IBooks | null> => {
-  const result = await BooksModel.findById(id);
+  const result = await BooksModel.findById(id).populate('reviews').lean();
   return result;
 };
 

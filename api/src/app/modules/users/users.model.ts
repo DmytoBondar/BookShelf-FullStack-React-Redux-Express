@@ -18,13 +18,14 @@ const UserSchema = new Schema<IUser, IUserModel>(
         },
         gender: {
             type: String,
-            enum: ['male', 'female', 'shemale'],
+            enum: ['male', 'female'],
         },
         address: {
             type: String,
         },
         contactNo: {
-            type: Number,
+            type: String,
+            required:true
         },
         email: {
             type: String,

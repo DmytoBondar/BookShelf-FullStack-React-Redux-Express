@@ -1,11 +1,14 @@
-import { Model } from "mongoose";
+import { Model, Types } from "mongoose";
+import { IComment } from "../comment/comment.interface";
 
 export interface IBooks {
+    _id: Types.ObjectId
     title: string;
     author: string;
     genre: string;
     publicationDate:string;
-    reviews?: string;
+    image?:string;
+    reviews?: (Types.ObjectId)[];
 }
 
 export interface IBooksFilter {

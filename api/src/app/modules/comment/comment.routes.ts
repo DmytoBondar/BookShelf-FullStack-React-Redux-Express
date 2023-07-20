@@ -1,0 +1,11 @@
+import express from 'express';
+import { CommentController } from './comment.controller';
+import auth from '../../middleware/auth';
+import { ENUM_USER } from '../../../constants/users';
+
+const router = express.Router();
+
+router.post('/create', auth(ENUM_USER.USER),CommentController.createComment);
+router.get('/',CommentController.getAllComments);
+
+export const CommentRouter = router;
