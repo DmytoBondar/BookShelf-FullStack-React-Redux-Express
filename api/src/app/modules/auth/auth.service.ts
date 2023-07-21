@@ -19,8 +19,7 @@ const authLogin = async (user: ILoginUser): Promise<IAuthResponse> => {
     if (!isUserExist) {
         throw new ApiError(404, 'User is not exists !!');
     }
-    // console.log("old pass", isUserExist.password);
-    // console.log("given", password);
+
     if (isUserExist.password && !(await AuthModel.isPasswordMatched(password,isUserExist.password,))) {
         throw new ApiError(404, 'Password is not Matched !!');
     };
