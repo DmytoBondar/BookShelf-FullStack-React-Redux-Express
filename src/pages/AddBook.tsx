@@ -65,6 +65,10 @@ const AddBook = () => {
                             <label htmlFor="genreTitle" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Genre</label>
                             <input name="genre" onChange={(e) => handleChange(e)} type="text" id="genreTitle" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Book Genre" required />
                         </div>
+                        <div className="mb-6">
+                            <label htmlFor="addImage" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image Link</label>
+                            <input name="image" onChange={(e) => handleChange(e)} type="text" id="addImage" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Add Image Link ..." required />
+                        </div>
 
                         <div className='mb-6'>
                             <Popover>

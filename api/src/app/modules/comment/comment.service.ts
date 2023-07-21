@@ -3,8 +3,8 @@ import { IComment } from "./comment.interface";
 import { CommentModel } from "./comment.model";
 import { AuthModel } from "../auth/auth.model";
 import ApiError from "../../../error/apiError";
-import mongoose from "mongoose";
-import { BooksModel } from "../books/books.model";
+// import mongoose from "mongoose";
+// import { BooksModel } from "../books/books.model";
 
 const createComment = async (user: JwtPayload | null, payload: IComment): Promise<IComment> => {
     const contactNo = user?.contactNo;
@@ -13,27 +13,45 @@ const createComment = async (user: JwtPayload | null, payload: IComment): Promis
         throw new ApiError(404, "User is not Found !");
     }
     payload.userId = isUserExist.user;
-    let CommentData ;
-    const session = await mongoose.startSession();
-    try {
-        session.startTransaction();
-        const createComment = await CommentModel.create([payload], {session});
-        const commetId = createComment[0]._id   
+    const result = await CommentModel.create(payload);
 
-        await BooksModel.updateOne({_id:payload.bookId}, {$push: {reviews: commetId}})
+    //Taking Alternative way --> Not saving Comments in Books Model -> rather than getting comments by book id
+    // let CommentData ;
+    // const session = await mongoose.startSession();
+    // try {
+    //     session.startTransaction();
+    //     const createComment = await CommentModel.create([payload], {session});
+    //     // const commetId = createComment[0]._id   
 
-        CommentData = createComment[0]
+    //     // await BooksModel.updateOne({_id:payload.bookId}, {$push: {reviews: commetId}})
 
-        session.commitTransaction();
-        session.endSession();
-    } catch (error) {
-        session.abortTransaction();
-        session.endSession();
-        throw error;
-    }
+    //     CommentData = createComment[0]
 
-    return CommentData;
+    //     session.commitTransaction();
+    //     session.endSession();
+    // } catch (error) {
+    //     session.abortTransaction();
+    //     session.endSession();
+    //     throw error;
+    // }
+
+    return result;
 };
+
+const getBookComments = async (bookId:string): Promise<IComment[] | null> => {
+    const result = await CommentModel.find({bookId: bookId})
+    .populate(
+        [
+            {
+                path: 'bookId'
+            },
+            {
+                path: 'userId'
+            }
+        ])
+    return result;
+};
+
 
 const getAllComments = async (): Promise<IComment[] | null> => {
     const result = await CommentModel.find().populate(
@@ -51,5 +69,6 @@ const getAllComments = async (): Promise<IComment[] | null> => {
 
 export const CommentService = {
     createComment,
-    getAllComments
+    getAllComments,
+    getBookComments
 }

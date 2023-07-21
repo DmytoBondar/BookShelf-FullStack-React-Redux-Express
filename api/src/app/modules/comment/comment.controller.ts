@@ -25,7 +25,20 @@ const getAllComments = catchAsync(async (req: Request, res: Response) => {
         data: result
     });
 });
+
+const getBookComments = catchAsync(async (req: Request, res: Response) => {
+    const {id} = req.params;
+    const result = await CommentService.getBookComments(id);
+    sendResponse<IComment[]>(res, {
+        statusCode: 200,
+        success: true,
+        message: 'Comments retrieved successfully !',
+        data: result
+    });
+});
+
 export const CommentController = {
     createComment,
-    getAllComments
+    getAllComments,
+    getBookComments
 };

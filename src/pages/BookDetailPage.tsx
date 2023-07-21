@@ -6,7 +6,7 @@ import DetailHeader from '@/layout/DetailHeader';
 const BookDetailPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError } = useGetSingleBookQuery(id)
-
+  
   let content = null;
   if (isLoading) content = <div>Loading ...</div>;
   if (!isLoading && isError) content = <div>Something went wrong.</div>;
@@ -15,7 +15,7 @@ const BookDetailPage = () => {
     content = (
       <>
         <DetailHeader data={data?.data}/>
-        <Review />
+        <Review id={id}/>
       </>
     )
   }

@@ -8,7 +8,7 @@ const Books = ({ book }: IProps) => {
     return (
         <div className="w-full bg-gradient-to-r mb-3 from-cyan-200 to-blue-100 w-120 h-60 rounded shadow-md flex card text-grey-darkest">
             <Link to={`/book/${book._id}`} className="w-1/2">
-                <img className="h-full rounded-l-sm" src="https://bit.ly/2EApSiC" alt="Room Image" />
+                <img className="h-full rounded-l-sm" src={book.image} alt="Room Image" />
             </Link>
             <div className="w-1/2 flex flex-col">
                 <div className="p-4 pb-0 flex-1">
