@@ -10,7 +10,6 @@ const UserSchema = new Schema<IUser, IUserModel>(
             },
             lastName: {
                 type: String,
-                required: true
             },
             middleName: {
                 type: String
@@ -29,8 +28,6 @@ const UserSchema = new Schema<IUser, IUserModel>(
         },
         email: {
             type: String,
-            required: true,
-            unique: true,
         },
         profileImage: {
             type: String
