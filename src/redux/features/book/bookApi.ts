@@ -26,6 +26,14 @@ const bookApi = api.injectEndpoints({
             }),
             invalidatesTags: ['book']
         }),
+        deleteBook: builder.mutation({
+            query: (id) => ({
+                url: `/book/${id}`,
+                method: 'DELETE',
+                body: id
+            }),
+            invalidatesTags: ['book']
+        }),
     })
 })
-export const { useGetBooksQuery, useGetSingleBookQuery, usePostBookMutation, useUpdateBookMutation } = bookApi;
+export const { useDeleteBookMutation,useGetBooksQuery, useGetSingleBookQuery, usePostBookMutation, useUpdateBookMutation } = bookApi;

@@ -2,15 +2,17 @@ import { useGetSingleBookQuery } from '@/redux/features/book/bookApi'
 import { useParams } from 'react-router-dom'
 import Review from './Review';
 import DetailHeader from '@/layout/DetailHeader';
+import Spinner from '@/layout/Spinner';
+import AlertLayout from '@/layout/Alert';
 
 const BookDetailPage = () => {
   const { id } = useParams();
-  const { data, isLoading, isError } = useGetSingleBookQuery(id)
+  const { data, isLoading, isError } = useGetSingleBookQuery(id);
   
   let content = null;
-  if (isLoading) content = <div>Loading ...</div>;
-  if (!isLoading && isError) content = <div>Something went wrong.</div>;
-  if (!isLoading && !isError && data?.data) content = <div>Data is empty.</div>;
+  if (isLoading) content = <Spinner/>;
+  if (!isLoading && isError) content = <AlertLayout title="Something Went Wrong !!"/>;
+  if (!isLoading && !isError && data?.data) content = <AlertLayout title="No Data is Available !!"/>;
   if (!isLoading && !isError && data?.data) {
     content = (
       <>

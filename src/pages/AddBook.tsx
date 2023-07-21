@@ -8,9 +8,12 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { usePostBookMutation } from '@/redux/features/book/bookApi';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '@/layout/Spinner';
+import Swal from 'sweetalert2'
+
 
 const AddBook = () => {
-    const [postBook, { isError, isSuccess }] = usePostBookMutation();
+    const [postBook, { isError, isSuccess, isLoading }] = usePostBookMutation();
     const navigate = useNavigate();
     const [input, setInput] = useState({})
     const [date, setDate] = React.useState<Date>()
@@ -31,18 +34,34 @@ const AddBook = () => {
             postBook(data)
         }
         else {
-            console.log("Publication date is required")
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Publication Date is required !!",
+                showConfirmButton: true,
+                timer: 3500
+            })
         }
 
     };
     useEffect(() => {
       if(isSuccess){
-        console.log("success message")
+        Swal.fire({
+            icon: 'success',
+            title: 'Successfully Added!',
+            showConfirmButton: false,
+            timer: 1500
+          })
         navigate('/')
       }
       if(isError){
-        console.log("success error")
-
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "Something Went Wrong !!",
+            showConfirmButton: true,
+            timer: 3500
+        })
       }
     }, [isSuccess, isError])
     
@@ -94,7 +113,9 @@ const AddBook = () => {
                                 </PopoverContent>
                             </Popover>
                         </div>
-                        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                        <button disabled={isLoading} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            {isLoading ? <Spinner/> : "Submit"}
+                            </button>
                     </form>
                 </div>
             </div>

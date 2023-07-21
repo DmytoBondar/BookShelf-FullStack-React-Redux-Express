@@ -1,23 +1,63 @@
 import { useDeleteUserWishMutation, useGetUserWishQuery } from "@/redux/features/wish/wishApi"
 import { useAppSelector } from "@/redux/hook"
 import { Link } from "react-router-dom";
-
+import Spinner from "./Spinner";
+import AlertLayout from "./Alert";
+import { useEffect } from 'react';
+import Swal from 'sweetalert2'
 
 const WishList = () => {
-    const {userId} = useAppSelector((state) => state.auth)
-    const { data, isSuccess, isError, isLoading } = useGetUserWishQuery(userId);
-    const [deleteUserWish, { }] = useDeleteUserWishMutation();
+    const { userId } = useAppSelector((state) => state.auth)
+    const { data, isError, isLoading } = useGetUserWishQuery(userId);
+    const [deleteUserWish, { isSuccess, isLoading: isDeleteLoading, isError: isDeleteError }] = useDeleteUserWishMutation();
 
     const handleDeleteWish = (wishId: string) => {
         if (wishId) {
-            deleteUserWish(wishId)
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    deleteUserWish(wishId)
+                    Swal.fire(
+                        'Deleted!',
+                        'Wish List has been deleted.',
+                        'success'
+                        )
+                    }
+                })
         }
     }
+    useEffect(() => {
+        if (isDeleteLoading) {
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Successfully Delete!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+        if (isDeleteError) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Something Went be Wrong !!",
+                showConfirmButton: true,
+                timer: 3500
+            })
+        }
+    }, [isSuccess, isError])
     //decide what to render
     let content = null;
-    if (isLoading) content = <div>Loading ...</div>;
-    if (!isLoading && isError) content = <div>Something went wrong.</div>;
-    if (!isLoading && !isError && data?.data?.length === 0) content = <div>Data is empty.</div>;
+    if (isLoading) content = <Spinner />;
+    if (!isLoading && isError) content = <AlertLayout title="Something Went Wrong !!" />;
+    if (!isLoading && !isError && data?.data?.length === 0) content = <AlertLayout title="Data is empty" />;
     if (!isLoading && !isError && data?.data?.length > 0) {
         content = data?.data.map((book: any, id: number) => (
             <div key={id + 100} className="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
@@ -42,13 +82,13 @@ const WishList = () => {
                                 Publication Date:  {book?.book?.publicationDate}
                             </div>
                             <div className="mt-3 mx-auto">
-        
+
                                 <Link to={`/book/${book?.book?._id}`}>
                                     <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View</button>
                                 </Link>
-
-                      
-                                <button onClick={() => handleDeleteWish(book?._id)} type="button" className="text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Delete</button>
+                                <button onClick={() => handleDeleteWish(book?._id)} type="button" className="text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    {isLoading ? <Spinner /> : "Delete"}
+                                </button>
                             </div>
                         </div>
                     </div>

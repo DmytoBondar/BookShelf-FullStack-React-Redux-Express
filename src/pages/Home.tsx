@@ -1,5 +1,7 @@
 import Books from "@/components/Books";
+import AlertLayout from "@/layout/Alert";
 import Sidebar from "@/layout/Sidebar";
+import Spinner from "@/layout/Spinner";
 import { useGetBooksQuery } from "@/redux/features/book/bookApi";
 import { useAppSelector } from "@/redux/hook";
 import { IBooks } from "@/types";
@@ -17,9 +19,9 @@ const Home = () => {
 
   //decide what to render
   let content = null;
-  if (isLoading) content = <div>Loading ...</div>;
-  if (!isLoading && isError) content = <div>Something went wrong.</div>;
-  if (!isLoading && !isError && bookData?.length === 0) content = <div>Data is empty.</div>;
+  if (isLoading) content = <Spinner/>;
+  if (!isLoading && isError) content = <AlertLayout title="Something Went Wrong !!"/>;
+  if (!isLoading && !isError && bookData?.length === 0) content = <AlertLayout title="No Data is Available !!"/>;
   if (!isLoading && !isError && bookData?.length > 0) {
     content = bookData.map((book: IBooks) => <Books book={book} key={book._id} />)
   }

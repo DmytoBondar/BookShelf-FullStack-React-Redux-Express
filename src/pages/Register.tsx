@@ -1,7 +1,9 @@
 import Logo from '@/assets/logo.jpg';
+import Spinner from '@/layout/Spinner';
 import { useUserRegisterMutation } from '@/redux/features/auth/authApi';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const Register = () => {
     interface IState {
@@ -9,7 +11,7 @@ const Register = () => {
         contactNo:string;
         password:string;
     }
-    const [userRegister, {isSuccess, isError}] = useUserRegisterMutation();
+    const [userRegister, {isSuccess, isError, isLoading}] = useUserRegisterMutation();
     const [input, setInput] = useState<IState>({name:'', contactNo:'', password:''});
     const navigation = useNavigate();
 
@@ -36,7 +38,22 @@ const Register = () => {
     }
     useEffect(() => {
         if (isSuccess) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Successfully Registered!',
+                showConfirmButton: false,
+                timer: 1500
+            })
             navigation('/login');
+        }
+        if (isError) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Something Went Wrong !!",
+                showConfirmButton: true,
+                timer: 3500
+            })
         }
     }, [isSuccess])
     return (
@@ -109,11 +126,12 @@ const Register = () => {
                             <label htmlFor="remember" className="text-sm font-semibold text-gray-500">Remember me</label>
                         </div>
                         <div>
-                            <button
+                            <button disabled={isLoading}
                                 type="submit"
                                 className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-500 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
                             >
-                                Log in
+                                {isLoading ? <Spinner/> : "Register"}
+
                             </button>
                         </div>
                         <div className="flex flex-col space-y-5">

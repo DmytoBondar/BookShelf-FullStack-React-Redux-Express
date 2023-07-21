@@ -1,8 +1,55 @@
+import { useDeleteBookMutation } from "@/redux/features/book/bookApi";
 import { useAppSelector } from "@/redux/hook"
 import { Link } from "react-router-dom"
+import Swal from 'sweetalert2';
+import { useEffect } from 'react';
+import Spinner from "./Spinner";
 
 const DetailHeader = ({ data }: any) => {
     const state = useAppSelector((state) => state.auth.userId);
+    const [deleteBook, { isLoading, isError, isSuccess }] = useDeleteBookMutation();
+
+    const handleDelete = (id: string) => {
+        if (id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    deleteBook(id)
+                    Swal.fire(
+                        'Deleted!',
+                        'Book has been deleted.',
+                        'success'
+                    )
+                }
+            })
+        }
+    }
+    useEffect(() => {
+        if (isSuccess) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Successfully Added!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+        if (isError) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Something Went be wrong !!",
+                showConfirmButton: true,
+                timer: 3500
+            })
+        }
+    }, [isSuccess, isError])
 
     return (
         <div className="">
@@ -29,7 +76,9 @@ const DetailHeader = ({ data }: any) => {
                                 <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit Book</button>
                             </Link>
 
-                            <button type="button" className="text-white bg-red-700 hover:bg-red-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Delete</button>
+                            <button disabled={isLoading} onClick={() => handleDelete(data._id)} type="button" className="text-white bg-red-700 hover:bg-red-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                {isLoading ? <Spinner /> : "Delete"}
+                            </button>
                         </div>}
 
                     </div>
