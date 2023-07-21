@@ -4,6 +4,7 @@ import ApiError from "../../../error/apiError";
 import { jwtHelpers } from "../../../interfaces/jwtHelpers";
 import { IAuth, IAuthResponse, ILoginUser } from "./auth.interface";
 import { AuthModel } from "./auth.model";
+import { Types } from "mongoose";
 
 const getAllAuth = async (): Promise<IAuth[]> => {
     const result = await AuthModel.find().populate('user');
@@ -23,7 +24,9 @@ const authLogin = async (user: ILoginUser): Promise<IAuthResponse> => {
     if (isUserExist.password && !(await AuthModel.isPasswordMatched(password,isUserExist.password,))) {
         throw new ApiError(404, 'Password is not Matched !!');
     };
-    const { role, contactNo } = isUserExist;
+    const { role, contactNo, _id } = isUserExist;
+    const userId: Types.ObjectId | null = _id ? _id : null;
+    
     const accessToken = jwtHelpers.createToken(
         { role, contactNo },
         config.jwt.secret as Secret,
@@ -35,8 +38,9 @@ const authLogin = async (user: ILoginUser): Promise<IAuthResponse> => {
         config.jwt.refresh_secret as Secret,
         config.jwt.refresh_expires_in as string
     )
+
     return {
-        accessToken, refreshToken
+        accessToken, refreshToken, userId
     }
 }
 

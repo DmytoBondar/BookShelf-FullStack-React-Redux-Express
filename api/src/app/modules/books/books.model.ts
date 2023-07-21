@@ -23,6 +23,10 @@ const BooksSchema = new Schema<IBooks, IBooksModel>(
     image: {
       type: String,
     },
+    createdBy:{
+      type: Schema.Types.ObjectId,
+      req: 'Users'
+    },
     reviews: [
       {
         type: Schema.Types.ObjectId,

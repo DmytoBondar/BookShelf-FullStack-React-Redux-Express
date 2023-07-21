@@ -1,5 +1,5 @@
 import { Model, Types } from "mongoose";
-import { IComment } from "../comment/comment.interface";
+import { IUser } from "../users/users.interface";
 
 export interface IBooks {
     _id: Types.ObjectId
@@ -9,6 +9,7 @@ export interface IBooks {
     publicationDate:string;
     image?:string;
     reviews?: (Types.ObjectId)[];
+    createdBy?:Types.ObjectId | IUser;
 }
 
 export interface IBooksFilter {

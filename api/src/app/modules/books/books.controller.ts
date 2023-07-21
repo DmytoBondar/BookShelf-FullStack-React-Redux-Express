@@ -8,7 +8,8 @@ import { booksFilterOptions } from '../../../constants';
 
 const createBook = catchAsync(async (req: Request, res: Response) => {
     const { ...booksData } = req.body;
-    const result = await BookService.createBook(booksData);
+    const user = req.user
+    const result = await BookService.createBook(user,booksData);
 
     sendResponse<IBooks>(res, {
         statusCode: 200,

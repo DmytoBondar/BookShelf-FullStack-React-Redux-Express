@@ -1,6 +1,9 @@
+import { useAppSelector } from "@/redux/hook"
 import { Link } from "react-router-dom"
 
-const DetailHeader = ({data}: any) => {
+const DetailHeader = ({ data }: any) => {
+    const state = useAppSelector((state) => state.auth.userId);
+
     return (
         <div className="">
             <div className="h-80 w-full bg-purple-400 relative">
@@ -21,9 +24,14 @@ const DetailHeader = ({data}: any) => {
                                 Publication Date : {data.publicationDate}
                             </div>
                         </div>
-                        <Link to={`/book/edit-book/${data._id}`}>
-                            <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit Book</button>
-                        </Link>
+                        {state == data.createdBy && <div>
+                            <Link to={`/book/edit-book/${data._id}`}>
+                                <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit Book</button>
+                            </Link>
+
+                            <button type="button" className="text-white bg-red-700 hover:bg-red-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Delete</button>
+                        </div>}
+
                     </div>
                 </div>
             </div>

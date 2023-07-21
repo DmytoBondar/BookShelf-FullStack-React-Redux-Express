@@ -16,6 +16,7 @@ export interface ILoginUser {
 export interface IAuthResponse {
     accessToken: string;
     refreshToken?: string;
+    userId?: Types.ObjectId | null;
 }
 export type IAuthModel = {
     isUserExist(contactNo: string): Promise<IAuth | null>;

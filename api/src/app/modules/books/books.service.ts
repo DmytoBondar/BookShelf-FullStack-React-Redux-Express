@@ -1,8 +1,17 @@
+import { JwtPayload } from "jsonwebtoken";
 import { booksFilterOptions, booksSearchableFields } from "../../../constants";
 import { IBooks, IBooksFilter } from "./books.interface";
 import { BooksModel } from "./books.model";
+import { AuthModel } from "../auth/auth.model";
+import ApiError from "../../../error/apiError";
 
-const createBook = async (payload: IBooks): Promise<IBooks> => {
+const createBook = async (user: JwtPayload | null, payload: IBooks): Promise<IBooks> => {
+  const contactNo = user?.contactNo;
+  const isUserExist = await AuthModel.isUserExist(contactNo);
+  if(!isUserExist){
+    throw new ApiError(404, "User is Not Authenticated !!")
+  }
+  payload.createdBy = isUserExist._id
   const result = await BooksModel.create(payload);
   return result;
 };

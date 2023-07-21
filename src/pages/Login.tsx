@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
     const [input, setInput] = useState({});
     const navigation = useNavigate();
-    
+
     const [userLogin, { data, isSuccess, isError, isLoading }] = useUserLoginMutation();
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInput({
@@ -15,15 +15,15 @@ const Login = () => {
         }
         )
     }
-    
+
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         userLogin(input)
     }
     useEffect(() => {
         if (isSuccess) {
-            localStorage.setItem("token", data?.data.accessToken)
-            navigation('/');
+            localStorage.setItem("token", JSON.stringify(data?.data));
+            navigation('/')
         }
 
     }, [isSuccess])

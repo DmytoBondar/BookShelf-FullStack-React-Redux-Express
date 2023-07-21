@@ -9,7 +9,7 @@ const App = () => {
   useEffect(() => {
     const data = localStorage.getItem('token')
     if(data){
-      dispatch(addUser(data))
+      dispatch(addUser(JSON.parse(data)))
     }
   }, [dispatch])
 
