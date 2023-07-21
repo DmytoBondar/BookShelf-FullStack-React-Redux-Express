@@ -1,14 +1,12 @@
 import Logo from '@/assets/logo.jpg';
 import { useUserLoginMutation } from '@/redux/features/auth/authApi';
-import { addUser } from '@/redux/features/auth/authSlice';
-import { useAppDispatch } from '@/redux/hook';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [input, setInput] = useState({});
     const navigation = useNavigate();
-    const dispatch = useAppDispatch();
+    
     const [userLogin, { data, isSuccess, isError, isLoading }] = useUserLoginMutation();
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInput({
@@ -17,15 +15,14 @@ const Login = () => {
         }
         )
     }
-    if(data && isSuccess){
-        dispatch(addUser(data))
-    }
+    
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         userLogin(input)
     }
     useEffect(() => {
         if (isSuccess) {
+            localStorage.setItem("token", data?.data.accessToken)
             navigation('/');
         }
 

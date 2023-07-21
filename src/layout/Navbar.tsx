@@ -1,15 +1,20 @@
 import Logo from "@/assets/logo.jpg";
 import { Link } from 'react-router-dom';
-import {useState} from 'react';
-import { useAppDispatch } from "@/redux/hook";
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { searchValue } from "@/redux/features/book/bookSlice";
+import { clearUser } from "@/redux/features/auth/authSlice";
 
 const Navbar = () => {
-  const [input, setInput] =useState('');
+  const {user} = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-
-  if(input){
+  const [input, setInput] = useState('');
+  if (input) {
     dispatch(searchValue(input))
+  }
+  const signout = () => {
+    localStorage.removeItem('token');
+    dispatch(clearUser())
   }
 
   return (
@@ -41,7 +46,11 @@ const Navbar = () => {
             <a className="md:p-4 py-2 block hover:text-purple-400" href="#">Best Selling</a>
           </li>
           <li>
-            <a className="md:p-4 py-2 block hover:text-purple-400 text-purple-500" href="#">Sign Up</a>
+            {
+              user ? <Link to="/" onClick={signout} className="md:p-4 py-2 block hover:text-purple-400 text-purple-500">SignOut</Link> :
+                <Link to="/login" className="md:p-4 py-2 block hover:text-purple-400 text-purple-500">Login</Link>
+            }
+
           </li>
         </ul>
       </div>

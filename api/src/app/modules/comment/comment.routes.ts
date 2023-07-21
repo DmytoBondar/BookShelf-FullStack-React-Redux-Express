@@ -5,7 +5,7 @@ import { ENUM_USER } from '../../../constants/users';
 
 const router = express.Router();
 
-router.post('/create',CommentController.createComment);
+router.post('/create',auth(ENUM_USER.USER), CommentController.createComment);
 router.get('/',CommentController.getAllComments);
 router.get('/book-comments/:id',CommentController.getBookComments);
 

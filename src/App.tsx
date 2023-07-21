@@ -1,10 +1,22 @@
 import MainLout from './layout/MainLout'
+import { addUser } from './redux/features/auth/authSlice';
+import { useAppDispatch } from './redux/hook';
+import { useEffect } from 'react';
 
 const App = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const data = localStorage.getItem('token')
+    if(data){
+      dispatch(addUser(data))
+    }
+  }, [dispatch])
+
   return (
     <>
-    <MainLout/>
+      <MainLout />
     </>
   )
 }
-export default App
+export default App;
