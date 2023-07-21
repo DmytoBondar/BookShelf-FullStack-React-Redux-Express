@@ -9,7 +9,8 @@ const WishSchema = new Schema<IWish, IWishModel>(
         },
         book: {
             type: Schema.Types.ObjectId,
-            ref: 'Books'
+            ref: 'Books',
+            unique: true,
         }
     },
     {

@@ -1,3 +1,4 @@
+import { useCreateWishMutation } from "@/redux/features/wish/wishApi";
 import { IBooks } from "@/types";
 import { Link } from "react-router-dom";
 
@@ -5,6 +6,13 @@ interface IProps {
     book: IBooks
 }
 const Books = ({ book }: IProps) => {
+    const [createWish, {isSuccess, isError}] = useCreateWishMutation();
+
+    const handleAddWishList = () => {
+        if(book._id){
+            createWish({book:book._id})
+        }
+    }
     return (
         <div className="w-full bg-gradient-to-r mb-3 from-cyan-200 to-blue-100 w-120 h-60 rounded shadow-md flex card text-grey-darkest">
             <Link to={`/book/${book._id}`} className="w-1/2">
@@ -24,7 +32,7 @@ const Books = ({ book }: IProps) => {
                     </div>
                 </div>
                 <div className="bg-gray-300 p-3 flex items-center justify-between transition hover:bg-grey-light">
-                    <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Wish</button>
+                    <button onClick={handleAddWishList } type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Wish</button>
                     <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Reading List</button>
                 </div>
             </div>

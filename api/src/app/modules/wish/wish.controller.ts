@@ -28,8 +28,8 @@ const getUserWish = catchAsync(async (req: Request, res: Response) => {
 });
 
 const deleteUserWish = catchAsync(async (req: Request, res: Response) => {
-    const {userId} = req.body;
-    const result = await WishService.deleteUserWish(userId);
+    const {id} = req.params;
+    await WishService.deleteUserWish(id);
 
     sendResponse<IWish>(res, {
         statusCode: 200,

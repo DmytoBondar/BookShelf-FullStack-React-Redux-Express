@@ -15,7 +15,6 @@ const Home = () => {
     bookData = data?.data
   }
 
-
   //decide what to render
   let content = null;
   if (isLoading) content = <div>Loading ...</div>;
