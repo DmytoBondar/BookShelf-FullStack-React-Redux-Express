@@ -1,4 +1,5 @@
 import App from "@/App";
+import WishList from "@/layout/WishList";
 import AddBook from "@/pages/AddBook";
 import BookDetailPage from "@/pages/BookDetailPage";
 import EditBook from "@/pages/EditBook";
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         {
           path: 'book/edit-book/:id',
           element: <EditBook/>
+        },
+        {
+          path: 'wish-list/',
+          element: <WishList/>
         }
       ]
     },

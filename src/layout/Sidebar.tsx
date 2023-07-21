@@ -58,7 +58,9 @@ const Sidebar = () => {
                 </div>
                 <div>
                     <h2 className="text-white hover:text-cyan-500 p-2">Reading List</h2>
-                    <h2 className="text-white hover:text-cyan-500 p-2">Wish List</h2>
+                    <Link to="/wish-list">
+                        <h2 className="text-white hover:text-cyan-500 p-2">Wish List</h2>
+                    </Link>
                     <Link to='/book/add-book'>
                         <h2 className="text-white hover:text-cyan-500 p-2">Add Book</h2>
                     </Link>
