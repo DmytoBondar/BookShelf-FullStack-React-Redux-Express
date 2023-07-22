@@ -5,7 +5,8 @@ export const api = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery(
         {
-            baseUrl: 'http://localhost:5000/api/v1',
+            baseUrl: 'https://bookshelf-sage.vercel.app/api/v1',
+            // baseUrl: 'http://localhost:5000/api/v1',
             prepareHeaders:  (headers, { getState }) => {
                 const token =( getState() as RootState)?.auth?.token;
                 if (token) {

@@ -44,7 +44,7 @@ const Register = () => {
                 showConfirmButton: false,
                 timer: 1500
             })
-            setInput({})
+            setInput({name:'', contactNo:'', password:''})
             navigation('/login');
         }
         if (isError) {
