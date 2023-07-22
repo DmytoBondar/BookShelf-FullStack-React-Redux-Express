@@ -15,20 +15,23 @@ interface IState {
     title?: string;
     author?: string;
     genre?: string;
+    image?: string;
     publicationDate?: Date | null
 }
 
 const EditBook = () => {
     const { id } = useParams();
-    const { data, isError, isLoading } = useGetSingleBookQuery(id);
+    const { data, isLoading } = useGetSingleBookQuery(id);
     const navigate = useNavigate();
     const [updateBook, { isSuccess: updateSuccess, isError: updateError, isLoading: updateLoading }] = useUpdateBookMutation()
     const [input, setInput] = useState<IState>({
         title: '',
         author: '',
         genre: '',
+        image: '',
         publicationDate: null
-    })
+    });
+
     const [date, setDate] = React.useState<Date>()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,8 +46,11 @@ const EditBook = () => {
         if (date) {
             setInput({ ...input, publicationDate: date })
         }
-        updateBook({ id, input })
-        navigate('/')
+        const data = {
+            id, data:input
+        }
+        updateBook(data);
+
     }
     useEffect(() => {
         if (updateSuccess) {
@@ -68,13 +74,13 @@ const EditBook = () => {
         if (date) {
             setInput({ ...input, publicationDate: date })
         }
-    }, [isError, data, setInput, setDate, date]);
+    }, [updateSuccess, setInput, date,updateError]);
 
 
     return (
         <div className="my-5 mx-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             <div>
-                <h3 className='py-1 mb-2'>Add Book</h3>
+                <h3 className='py-1 mb-2'>Edit Book</h3>
                 {
                     isLoading ? <Spinner />
                         : <div>
@@ -82,15 +88,19 @@ const EditBook = () => {
                             >
                                 <div className="mb-6">
                                     <label htmlFor="bookTitle" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                                    <input onChange={(e) => handleChange(e)} defaultValue={input.title} name="title" type="text" id="bookTitle" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Book Title" required />
+                                    <input onChange={(e) => handleChange(e)} defaultValue={data?.data?.title} name="title" type="text" id="bookTitle" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Book Title" required />
                                 </div>
                                 <div className="mb-6">
                                     <label htmlFor="bookAuthor" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author</label>
-                                    <input onChange={(e) => handleChange(e)} defaultValue={input.author} name="author" type="text" id="bookAuthor" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Book Author" required />
+                                    <input onChange={(e) => handleChange(e)} defaultValue={data?.data?.author} name="author" type="text" id="bookAuthor" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Book Author" required />
                                 </div>
                                 <div className="mb-6">
                                     <label htmlFor="genreTitle" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Genre</label>
-                                    <input onChange={(e) => handleChange(e)} defaultValue={input.genre} name="genre" type="text" id="genreTitle" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Book Genre" required />
+                                    <input onChange={(e) => handleChange(e)} defaultValue={data?.data?.genre} name="genre" type="text" id="genreTitle" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Book Genre" required />
+                                </div>
+                                <div className="mb-6">
+                                    <label htmlFor="imageTitle" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image Link</label>
+                                    <input onChange={(e) => handleChange(e)} defaultValue={data?.data?.image} name="image" type="text" id="imageTitle" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Book Genre" required />
                                 </div>
 
                                 <div className='mb-6'>
@@ -104,7 +114,7 @@ const EditBook = () => {
                                                 )}
                                             >
                                                 <CalendarIcon className="mr-2 h-4 w-4" />
-                                                {date ? format(date, "PPP") : <span>Pick Date</span>}
+                                                {date ? format(date, "PPP") : <span>{data?.data?.publicationDate}</span>}
                                             </Button>
                                         </PopoverTrigger>
                                         <PopoverContent className="w-auto p-0">

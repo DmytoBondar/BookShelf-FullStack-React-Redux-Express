@@ -44,6 +44,7 @@ const Register = () => {
                 showConfirmButton: false,
                 timer: 1500
             })
+            setInput({})
             navigation('/login');
         }
         if (isError) {

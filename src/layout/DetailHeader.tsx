@@ -1,6 +1,6 @@
 import { useDeleteBookMutation } from "@/redux/features/book/bookApi";
 import { useAppSelector } from "@/redux/hook"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Swal from 'sweetalert2';
 import { useEffect } from 'react';
 import Spinner from "./Spinner";
@@ -8,7 +8,7 @@ import Spinner from "./Spinner";
 const DetailHeader = ({ data }: any) => {
     const state = useAppSelector((state) => state.auth.userId);
     const [deleteBook, { isLoading, isError, isSuccess }] = useDeleteBookMutation();
-
+    const navigate = useNavigate();
     const handleDelete = (id: string) => {
         if (id) {
             Swal.fire({
@@ -35,10 +35,11 @@ const DetailHeader = ({ data }: any) => {
         if (isSuccess) {
             Swal.fire({
                 icon: 'success',
-                title: 'Successfully Added!',
+                title: 'Successfully Delete!',
                 showConfirmButton: false,
                 timer: 1500
             })
+            navigate("/")
         }
         if (isError) {
             Swal.fire({

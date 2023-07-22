@@ -44,11 +44,13 @@ const Navbar = () => {
             <li>
               <Link to='/book/add-book' className="md:p-4 py-2 block hover:text-purple-400">Add Book</Link>
             </li>
-
           }
-          <li>
-            <a className="md:p-4 py-2 block hover:text-purple-400" href="#">Best Selling</a>
-          </li>
+          {
+            userId &&
+            <li>
+              <Link to='/wish-list' className="md:p-4 py-2 block hover:text-purple-400">Wish List</Link>
+            </li>
+          }
           <li>
             {
               userId ? <Link to="/" onClick={signout} className="md:p-4 py-2 block hover:text-purple-400 text-purple-500">SignOut</Link> :

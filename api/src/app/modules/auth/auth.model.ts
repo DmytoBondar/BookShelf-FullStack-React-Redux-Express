@@ -8,6 +8,7 @@ const AuthSchema = new Schema<IAuth, IAuthModel>(
         role: {
             type: String,
             enum: ['admin', 'user'],
+            default:'user'
         },
         contactNo: {
             type: String,
