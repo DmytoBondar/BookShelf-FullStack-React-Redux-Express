@@ -24,13 +24,7 @@ const EditBook = () => {
     const { data, isLoading } = useGetSingleBookQuery(id);
     const navigate = useNavigate();
     const [updateBook, { isSuccess: updateSuccess, isError: updateError, isLoading: updateLoading }] = useUpdateBookMutation()
-    const [input, setInput] = useState<IState>({
-        title: '',
-        author: '',
-        genre: '',
-        image: '',
-        publicationDate: null
-    });
+    const [input, setInput] = useState<IState>({});
 
     const [date, setDate] = React.useState<Date>()
 
@@ -43,13 +37,9 @@ const EditBook = () => {
 
     const handleSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        if (date) {
-            setInput({ ...input, publicationDate: date })
+        if(input){
+            updateBook({id, data:input});
         }
-        const data = {
-            id, data:input
-        }
-        updateBook(data);
 
     }
     useEffect(() => {

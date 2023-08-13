@@ -41,27 +41,9 @@ const Sidebar = () => {
             </div>
 
             <div>
-                <h3 className="text-white bg-black p-2">Filter Options</h3>
-                <div className="my-2">
-                    <div className="mb-6 justify-start ms-2 gap-2 flex items-center">
-                        <label htmlFor="filterAuthor" className="ml-2 text-sm font-medium text-white dark:text-gray-300">Author</label>
-                        <input id="filterAuthor" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                    </div>
-                    <div className="mb-6 justify-start ms-2 gap-2 flex items-center">
-                        <label htmlFor="filterTitle" className="ml-2 text-sm font-medium text-white dark:text-gray-300">Title</label>
-                        <input id="filterTitle" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                    </div>
-                    <div className="mb-6 justify-start ms-2 gap-2 flex items-center">
-                        <label htmlFor="filterFeatured" className="ml-2 text-sm font-medium text-white dark:text-gray-300">Featured</label>
-                        <input id="filterFeatured" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                    </div>
-                </div>
-                <div>
-                    <h2 className="text-white hover:text-cyan-500 p-2">Reading List</h2>
-                    <Link to="/wish-list">
-                        <h2 className="text-white hover:text-cyan-500 p-2">Wish List</h2>
-                    </Link>
-                </div>
+                <Link to="/wish-list">
+                    <h2 className="text-white hover:text-cyan-500 p-2 w-full bg-blue-900">Wish List</h2>
+                </Link>
             </div>
         </div>
     )
